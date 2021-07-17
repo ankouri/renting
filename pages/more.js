@@ -38,13 +38,9 @@ import Loading from "../components/Loading";
 import  ArrowForwardIosIcon  from '@material-ui/icons/ArrowForwardIos';
 import { Alert } from "@material-ui/lab";
 import PrintBail from './../components/PrintBail';
-import { useReactToPrint } from "react-to-print";
 import PrintIcon from "@material-ui/icons/Print";
-
-const html2pdf =  dynamic(() => import('html2pdf.js'));
-
-import { ReactToPrint } from 'react-to-print'
-import { Head } from 'next/head';
+import dynamic from 'next/dynamic';
+import html2pdf from "html2pdf.js";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -73,7 +69,6 @@ export default function More() {
   const classes = useStyles();
   const [carObject, setCarObject] = useState([]);
   const [userObject, setUserObject] = useState([]);
-  const [agenceObject, setAgenceObject] = useState([]);
   const [user] = useAuthState(auth);
 
 
@@ -124,6 +119,8 @@ export default function More() {
 
   }
 
+  
+
   const handleSubmitAgence = async(e)=>{
     e.preventDefault();
     if(nameRef.current.value === '' || emailRef.current.value === '' || telRef.current.value === ''
@@ -165,7 +162,13 @@ export default function More() {
   }
 
   useEffect(() => {
+    if( typeof window === 'undefined'){
+      global.window = {}
+    }
     fetchData();
+
+  
+
   }, []);
 
   return (
