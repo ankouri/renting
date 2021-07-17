@@ -1,30 +1,10 @@
-import router, { useRouter } from "next/router";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "../firebase";
+
 import React, { useEffect, useState,useRef } from "react";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import { useCollection } from "react-firebase-hooks/firestore";
-import firebase from "firebase";
-import Image from "next/image";
-import ReactToPrint from 'react-to-print';
+
 import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Container,
-  Paper,
-  Chip,
-  Button,
   Grid,
   Avatar,
-  ListItemIcon,
-  List,
   Divider,
-  ListItem,
-  ListItemText,
-  FormControl,
-  TextField,
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import styled from "styled-components";

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import { Typography } from "@material-ui/core";
 import { auth, provider,db } from "../firebase";
-import { useAuthState } from 'react-firebase-hooks/auth'
 
 export default function Login() {
 

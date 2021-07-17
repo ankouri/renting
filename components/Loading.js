@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { Grid } from '@material-ui/core';
 import { Circle } from 'better-react-spinkit';
 import styled from 'styled-components';
 import { Typography } from '@material-ui/core';

@@ -2,45 +2,26 @@ import router, { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import React, { useEffect, useState,useRef } from "react";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import { useCollection } from "react-firebase-hooks/firestore";
-import firebase from "firebase";
-import Image from "next/image";
 import {
   AppBar,
   Toolbar,
-  IconButton,
   Typography,
   Container,
   Paper,
   Chip,
   Button,
   Grid,
-  Avatar,
-  ListItemIcon,
-  List,
-  Divider,
-  ListItem,
-  ListItemText,
   FormControl,
   TextField,
 } from "@material-ui/core";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import jsPDF from "jspdf";
-import CommuteIcon from "@material-ui/icons/Commute";
 import PersonIcon from "@material-ui/icons/Person";
-import InboxIcon from "@material-ui/icons/Inbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import Loading from "../components/Loading";
-import  ArrowForwardIosIcon  from '@material-ui/icons/ArrowForwardIos';
 import { Alert } from "@material-ui/lab";
 import PrintBail from './../components/PrintBail';
 import PrintIcon from "@material-ui/icons/Print";
-import dynamic from 'next/dynamic';
-import html2pdf from "html2pdf.js";
+
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,

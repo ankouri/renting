@@ -1,26 +1,18 @@
-import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import React, { useEffect, useState } from "react";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import { useCollection } from "react-firebase-hooks/firestore";
-import firebase from "firebase";
 import {
   Grid,
   Card,
   CardContent,
   Typography,
-  Chip,
-  Paper,
-  Badge,
-  Button,
+  Chip
 } from "@material-ui/core";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import styled from "styled-components";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import GroupIcon from "@material-ui/icons/Group";
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import CommuteIcon from '@material-ui/icons/Commute';
-import {Line, Doughnut,Pie } from 'react-chartjs-2';
+import {Line } from 'react-chartjs-2';
 export default function Dashboard() {
     const [totalusers, setTotalUses] = useState(0);
     const [totalCars, setTotalCars] = useState(0);

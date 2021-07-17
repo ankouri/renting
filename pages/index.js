@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Sidebar from '../components/Sidebar'
 import ListCars from '../components/ListCars'
 export default function Home() {
   return (

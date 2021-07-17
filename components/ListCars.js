@@ -16,11 +16,8 @@ import {
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import styled from "styled-components";
-
 import NotificationsIcon from "@material-ui/icons/Notifications";
-
 import { makeStyles } from "@material-ui/core/styles";
-
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Profile from "./Profile";
 import Notifications from "./Notifications";
@@ -30,6 +27,7 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import Dashboard from "./Dashboard";
 import Response from './Response';
 import Alert from "@material-ui/lab/Alert";
+
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,

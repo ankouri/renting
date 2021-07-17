@@ -25,6 +25,7 @@ import Loading from "./Loading";
 import Alert from "@material-ui/lab/Alert";
 import CheckIcon from "@material-ui/icons/CheckCircleOutline";
 import { DeleteOutlined } from "@material-ui/icons";
+
 export default function Notifications() {
   const route = useRouter();
   const [user] = useAuthState(auth);

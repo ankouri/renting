@@ -1,13 +1,9 @@
+import  { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import React, { useEffect, useState,useRef } from "react";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import { useCollection } from "react-firebase-hooks/firestore";
-import firebase from "firebase";
 import {
   Grid,
-  Toolbar,
-  Collapse,
   CardContent,
   Typography,
   Card,
@@ -15,7 +11,6 @@ import {
   CardActions,
   CardMedia,
   Chip,
-  IconButton,
   Dialog,
   DialogTitle,
   FormControl,
@@ -24,10 +19,8 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import styled from "styled-components";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import CheckIcon from "@material-ui/icons/Check";
 import { Divider } from "@material-ui/core";
-import { useRouter } from 'next/router';
 
 export default function CarsList() {
   const [carsList, setCarsList] = useState([]);

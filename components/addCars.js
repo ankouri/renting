@@ -1,9 +1,5 @@
-import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db,storage } from "../firebase";
-import React, { useEffect, useState,useRef } from "react";
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import { useCollection } from "react-firebase-hooks/firestore";
-import firebase from "firebase";
+import React, { useState,useRef } from "react";
 import styled from "styled-components";
 import CommuteIcon from '@material-ui/icons/Commute';
 import {
@@ -12,13 +8,10 @@ import {
   InputLabel,
   Select,
   Button,
-  Paper,
-  MenuItem,
+  MenuItem,TextField,FormControl
 } from "@material-ui/core";
 import Alert from '@material-ui/lab/Alert';
 
-import { FormControl } from "@material-ui/core";
-import { TextField } from "@material-ui/core";
 
 export default function AddCars() {
 

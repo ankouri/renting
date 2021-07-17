@@ -1,21 +1,16 @@
 import { useAuthState } from "react-firebase-hooks/auth";
-import router, { useRouter } from "next/router";
 import { auth, db } from "../firebase";
 import React, { useEffect, useState, useRef } from "react";
 import {
   Grid,
   Paper,
   Button,
-  Avatar,
   ListItemSecondaryAction,
   ListSubheader,
   ListItemIcon,
   List,
   ListItem,
   ListItemText,
-  IconButton,
-  TextField,
-  FormControl,
   Divider,
 } from "@material-ui/core";
 import DraftsIcon from "@material-ui/icons/Drafts";
@@ -23,8 +18,6 @@ import FiberNewIcon from "@material-ui/icons/FiberNew";
 import styled from "styled-components";
 import Loading from "./Loading";
 import Alert from "@material-ui/lab/Alert";
-import CheckIcon from "@material-ui/icons/CheckCircleOutline";
-import { DeleteOutlined } from "@material-ui/icons";
 
 export default function Response() {
 
