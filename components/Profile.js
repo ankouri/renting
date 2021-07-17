@@ -74,7 +74,7 @@ export default function Profile() {
                 <LeftProfile>
                 <TitleProfile
                         icon={<PersonIcon />}
-                        label="Profile Informations "
+                        label="Informations de profil "
                         color="basic"
                     />
                     <Container>

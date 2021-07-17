@@ -105,9 +105,9 @@ export default function Response() {
           </Grid>
           <Grid item lg={9} md={9} xs={6}>
             {open ? (
-                  selectedMessage === 1 ? ( <DefaultMessage><Alert severity="success"> Your demmand was accepted succefully </Alert> </DefaultMessage>):
-                  selectedMessage === -1 ?  ( <DefaultMessage><Alert severity="error"> Your demmand was rejected </Alert></DefaultMessage>) : 
-                  ( <DefaultMessage><Alert severity="error"> Your demmand waitting for a response </Alert></DefaultMessage>)
+                  selectedMessage === 1 ? ( <DefaultMessage><Alert severity="success"> Votre demande a été acceptée avec succès </Alert> </DefaultMessage>):
+                  selectedMessage === -1 ?  ( <DefaultMessage><Alert severity="error"> Votre demande a été rejetée</Alert></DefaultMessage>) : 
+                  ( <DefaultMessage><Alert severity="error"> Votre demande en attente de réponse </Alert></DefaultMessage>)
               
             ) : (
               <DefaultMessage>Select Notification to open</DefaultMessage>

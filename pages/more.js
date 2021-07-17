@@ -91,16 +91,17 @@ export default function More() {
 
   const generatePDF = async(e)=>{
 
-    
-
     await html2canvas(document.querySelector("#pdfContainer")).then(canvas => {
+
       const divImage = canvas.toDataURL("image/jpg");
+
       const pdf = new jsPDF({orientation: "landscape",unit: "px"});
+
       pdf.addImage(divImage, 'PNG', 0, 0);
+      
       pdf.save("contrat.pdf");
     });
 
-  
     route.push('/');
 
   }
