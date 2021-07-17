@@ -93,16 +93,16 @@ export default function Create() {
 
   const generatePDF = async() => {
     setLoading(true);
-    var element = document.getElementById('pdfContainer');
-    var opt = {
-      margin:       1,
-      filename:     'myfile.pdf',
-      image:        { type: 'jpg', quality: 0.98 },
-      html2canvas:  { scale: 2 },
-      jsPDF:        { unit: 'pt', format: 'letter', orientation: 'portrait' }
-    };
+    // var element = document.getElementById('pdfContainer');
+    // var opt = {
+    //   margin:       1,
+    //   filename:     'myfile.pdf',
+    //   image:        { type: 'jpg', quality: 0.98 },
+    //   html2canvas:  { scale: 2 },
+    //   jsPDF:        { unit: 'pt', format: 'letter', orientation: 'portrait' }
+    // };
 
-    await html2pdf().set(opt).from(element).save();
+    // await html2pdf().set(opt).from(element).save();
 
     await db.collection('commands').add({})
     .then((docRef)=>{

@@ -104,16 +104,16 @@ export default function More() {
 
   const generatePDF = async(e)=>{
   
-    var element = document.getElementById('pdfContainer');
-    var opt = {
-      margin:       1,
-      filename:     'contrat.pdf',
-      image:        { type: 'jpg', quality: 0.98 },
-      html2canvas:  { scale: 2 },
-      jsPDF:        { unit: 'pt', format: 'letter', orientation: 'portrait' }
-    };
+    // var element = document.getElementById('pdfContainer');
+    // var opt = {
+    //   margin:       1,
+    //   filename:     'contrat.pdf',
+    //   image:        { type: 'jpg', quality: 0.98 },
+    //   html2canvas:  { scale: 2 },
+    //   jsPDF:        { unit: 'pt', format: 'letter', orientation: 'portrait' }
+    // };
 
-    await html2pdf().set(opt).from(element).save();
+    // await html2pdf().set(opt).from(element).save();
   
     route.push('/');
 
