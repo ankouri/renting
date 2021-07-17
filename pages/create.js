@@ -2,6 +2,7 @@
 import router, { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
+import PersonIcon from "@material-ui/icons/Person";
 import React, { useEffect, useState } from "react";
 import {
   AppBar,
@@ -10,6 +11,7 @@ import {
   Container,
   Paper,
   Button,
+  Chip,
   Grid,
   Avatar,
   Divider,
@@ -19,6 +21,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import PrintIcon from "@material-ui/icons/Print";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import Loading from './../components/Loading';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -76,16 +80,13 @@ export default function Create() {
 
   const generatePDF = async() => {
     setLoading(true);
-    // var element = document.getElementById('pdfContainer');
-    // var opt = {
-    //   margin:       1,
-    //   filename:     'myfile.pdf',
-    //   image:        { type: 'jpg', quality: 0.98 },
-    //   html2canvas:  { scale: 2 },
-    //   jsPDF:        { unit: 'pt', format: 'letter', orientation: 'portrait' }
-    // };
-
-    // await html2pdf().set(opt).from(element).save();
+   
+    await html2canvas(document.querySelector("#pdfContainer")).then(canvas => {
+      const divImage = canvas.toDataURL("image/jpg");
+      const pdf = new jsPDF({orientation: "landscape",unit: "px"});
+      pdf.addImage(divImage, 'PNG', 0, 0);
+      pdf.save("contrat.pdf");
+    });
 
     await db.collection('commands').add({})
     .then((docRef)=>{
@@ -152,8 +153,13 @@ export default function Create() {
         </Navbar>
         <Paper>
           { 
-            loading ? <Loading /> : (<div style={{ width: "100%", margin: "0 auto" }}>
+            loading ? <Loading /> : (<div style={{ width: "90%", margin: "0px auto" }}>
             <PDFContaienr id="pdfContainer">
+            <TitleProfile
+                icon={<PersonIcon />}
+                label="Informations de contrat LLD "
+                color="basic"
+              />
               <Avatar
                 src={userObject.photoURL}
                 alt={userObject.username}
@@ -368,7 +374,6 @@ const MenuButton = styled(Button)`
 const PDFContaienr = styled.div`
   && {
     width: 100%;
-    margin:10 auto;
     height: 600px;
   }
 `;
@@ -380,4 +385,12 @@ const TitlePart = styled.div`
     text-align: center;
     font-family: "Noto Sans JP";
   }
+`;
+const TitleProfile = styled(Chip)`
+    width:100%;
+    margin:10px auto;
+    &&&{
+    font-family: "Noto Sans JP";
+    }
+
 `;

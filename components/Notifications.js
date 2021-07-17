@@ -138,7 +138,7 @@ export default function Notifications() {
   return (
     <div>
       <Grid container>
-        <Grid item lg={3} md={3} xs={6}>
+        <Grid item lg={3} md={3} xs={12}>
           <ListContainer elevation={0}>
             <List
               subheader={
@@ -185,7 +185,7 @@ export default function Notifications() {
             </List>
           </ListContainer>
         </Grid>
-        <Grid item lg={9} md={9} xs={6}>
+        <Grid item lg={9} md={9} xs={12}>
           {open ? (
             levelUser === 1 ? (
               <div style={{ width: "100%", margin: "0 auto" }}>

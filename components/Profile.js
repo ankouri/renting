@@ -69,7 +69,7 @@ export default function Profile() {
         <div>
             <Grid container>
           
-            <Grid item lg={4} md={4} xs={6}>
+            <Grid item lg={4} md={4} xs={12}>
                 
                 <LeftProfile>
                 <TitleProfile
@@ -114,7 +114,7 @@ export default function Profile() {
                 </LeftProfile>
                 
             </Grid>
-            <Grid item lg={8} md={8} xs={6}>
+            <Grid item lg={8} md={8} xs={12}>
           
             <RightProfile>
                 <TitleProfile

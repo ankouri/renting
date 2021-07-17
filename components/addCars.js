@@ -39,8 +39,8 @@ export default function AddCars() {
         setstatus(event.target.value);
     }
 
-    const handleUploadImageCar = async(file)=>{
-        
+    const handleUploadImageCar = async(event, file)=>{
+        event.preventDefault();
         const ref = storage.ref(`/cars/${file.name}`);
         const uploadTask = ref.put(file);
          uploadTask.on('state_changed',
@@ -56,21 +56,16 @@ export default function AddCars() {
                 .child(file.name)
                 .getDownloadURL()
                 .then(fireBaseUrl =>{
-                    console.log(fireBaseUrl)
-                   setCarImageLink(fireBaseUrl)
-                   console.log(carImageLink);
+                    handleAddCar(fireBaseUrl)
                 })
             }
         )
        
     }
 
-    const handleAddCar = async(e)=>{
-        e.preventDefault();
-        await handleUploadImageCar(selectedFile);
-        console.log('State link : '+carImageLink);
+    const handleAddCar = async(urlFirebase)=>{
         if(
-            carImageLink !== '' &&
+            urlFirebase !== '' &&
             marqueRef.current.value !== '' &&
             modelRef.current.value !== '' &&
             matRef.current.value !== '' &&
@@ -87,7 +82,7 @@ export default function AddCars() {
             .then((docRef)=>{
                 db.collection('cars').doc(docRef.id).set({
                     car_id:docRef.id,
-                    car_img:carImageLink,
+                    car_img:urlFirebase,
                     car_marque: marqueRef.current.value,
                     car_model: modelRef.current.value,
                     car_mat: matRef.current.value,
@@ -98,8 +93,7 @@ export default function AddCars() {
                     car_kilo: kiloRef.current.value,
                     car_date: new Date()
                 })
-                setResult('car added succeffuly')
-                setCarImageLink('')
+                setResult('voiture ajoutée avec succès')
                 setSelectedFile('')
                 document.getElementById('addCar').reset();
                 return true;
@@ -133,7 +127,7 @@ export default function AddCars() {
                     {
                         result && <Alert severity="success" style={{ marginBottom:'8px'}}>{ result }</Alert>
                     }
-                    <form onSubmit={ handleAddCar } id="addCar"> 
+                    <form onSubmit={ (e) => { handleUploadImageCar(e, selectedFile) } } id="addCar"> 
                     <Grid container spacing={2}>
                             <Grid item lg={12} md={12} xs={12}>
                                 <ImgePreview src={ selectedFile ? URL.createObjectURL(selectedFile) : ''} alt="" />

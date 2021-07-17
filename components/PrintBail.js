@@ -5,6 +5,7 @@ import {
   Grid,
   Avatar,
   Divider,
+  Chip,
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import styled from "styled-components";
@@ -29,6 +30,12 @@ export default function PrintBail(props) {
 
     return (
         <PDFContaienr id="pdfContainer">
+             <TitleProfile
+                icon={<PersonIcon />}
+                label="Informations de contrat bail "
+                color="basic"
+              />
+
             <Avatar
               src={userObject.photoURL}
               alt={userObject.username}
@@ -282,4 +289,12 @@ const TitlePart = styled.div`
     text-align: center;
     font-family: "Noto Sans JP";
   }
+`;
+const TitleProfile = styled(Chip)`
+    width:80%;
+    margin:10px auto;
+    &&&{
+    font-family: "Noto Sans JP";
+    }
+
 `;

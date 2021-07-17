@@ -2,6 +2,7 @@ import router, { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import React, { useEffect, useState,useRef } from "react";
+import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer';
 import {
   AppBar,
   Toolbar,
@@ -21,6 +22,8 @@ import PersonIcon from "@material-ui/icons/Person";
 import { Alert } from "@material-ui/lab";
 import PrintBail from './../components/PrintBail';
 import PrintIcon from "@material-ui/icons/Print";
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -38,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function More() {
   const route = useRouter();
   const nameRef = useRef('');
@@ -51,6 +55,8 @@ export default function More() {
   const [carObject, setCarObject] = useState([]);
   const [userObject, setUserObject] = useState([]);
   const [user] = useAuthState(auth);
+
+
 
 
   const fetchData = async () => {
@@ -84,22 +90,22 @@ export default function More() {
   };
 
   const generatePDF = async(e)=>{
-  
-    // var element = document.getElementById('pdfContainer');
-    // var opt = {
-    //   margin:       1,
-    //   filename:     'contrat.pdf',
-    //   image:        { type: 'jpg', quality: 0.98 },
-    //   html2canvas:  { scale: 2 },
-    //   jsPDF:        { unit: 'pt', format: 'letter', orientation: 'portrait' }
-    // };
 
-    // await html2pdf().set(opt).from(element).save();
+    
+
+    await html2canvas(document.querySelector("#pdfContainer")).then(canvas => {
+      const divImage = canvas.toDataURL("image/jpg");
+      const pdf = new jsPDF({orientation: "landscape",unit: "px"});
+      pdf.addImage(divImage, 'PNG', 0, 0);
+      pdf.save("contrat.pdf");
+    });
+
   
     route.push('/');
 
   }
 
+  
   
 
   const handleSubmitAgence = async(e)=>{
@@ -143,9 +149,7 @@ export default function More() {
   }
 
   useEffect(() => {
-    if( typeof window === 'undefined'){
-      global.window = {}
-    }
+
     fetchData();
 
   
@@ -184,31 +188,29 @@ export default function More() {
               </MenuButton>
 
               {
-                valider ? ( <MenuButton
+                valider ? (
+                  <MenuButton
                   aria-label="Dashboard"
                   color="inherit"
                   variant="contained"
                   disableElevation
                   startIcon={<PrintIcon />}
-                  onClick={generatePDF }
+                  onClick={ generatePDF }
                 >
                   Print
-                </MenuButton>) : ('')
+                </MenuButton>
+                ) : ('')
               }
 
             </div>
           </Toolbar>
         </Navbar>
         <Paper style={ {width:'100%', margin:'0 auto', textAlign:'center'}}>
-        <TitleProfile
-                icon={<PersonIcon />}
-                label="Informations d'agence de credit bail "
-                color="basic"
-              />
+     
           {
             valider ? (
               <>
-             <PrintBail  userObject={ userObject} carObject={ carObject } agence={ 
+             <PrintBail  userObject={ userObject } carObject={ carObject } agence={ 
                {name:nameRef.current.value,
                 email:emailRef.current.value,
                 tele:telRef.current.value,
@@ -262,6 +264,8 @@ export default function More() {
     </div>
   );
 }
+
+
 const ButtonLogin = styled(Button)`
   &&& {
     width: 100%;
